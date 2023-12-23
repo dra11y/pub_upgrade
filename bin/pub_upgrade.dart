@@ -1,5 +1,5 @@
 import 'package:args/args.dart';
-import 'src/version_checker.dart';
+import 'src/pub_upgrade.dart';
 
 const String version = '0.0.1';
 
@@ -25,7 +25,7 @@ ArgParser buildParser() {
 }
 
 void printUsage(ArgParser argParser) {
-  print('Usage: dart version_checker.dart <flags> [arguments]');
+  print('Usage: dart bin/pub_upgrade.dart <flags> [arguments]');
   print(argParser.usage);
 }
 
@@ -41,7 +41,7 @@ void main(List<String> arguments) async {
       return;
     }
     if (results.wasParsed('version')) {
-      print('version_checker version: $version');
+      print('pub_upgrade version: $version');
       return;
     }
     if (results.wasParsed('verbose')) {
@@ -54,7 +54,7 @@ void main(List<String> arguments) async {
     //   print('[VERBOSE] All arguments: ${results.arguments}');
     // }
 
-    await VersionChecker().checkVersions();
+    await PubUpgrade().checkVersions();
   } on FormatException catch (e) {
     // Print usage information if an invalid argument was provided.
     print(e.message);
